@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 
-// --- 1. DEFINITIONS ---
+
 
 typedef enum {
     TOK_INT, TOK_PLUS, TOK_MINUS, TOK_PRINT, TOK_SEMI, TOK_EOF
@@ -11,7 +11,7 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    int value; // Only used if type is TOK_INT
+    int value; 
 } Token;
 
 const char *src; // Pointer to source code string
@@ -154,3 +154,4 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
+
