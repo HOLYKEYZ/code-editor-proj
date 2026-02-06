@@ -2,6 +2,8 @@
 
 A lightweight, self-hosting text editor written in C.
 
+> **Fun Fact:** Some of the code for this editor was written using the editor itself! 🤯
+
 ![Screenshot](./screenshot.png)
 
 ## Features
