@@ -1,8 +1,8 @@
 # Minimal Windows Text Editor
 
-A lightweight, self-hosting text editor written in C (~700 lines). Inspired by `kilo`.
+A lightweight, self-hosting text editor written in C.
 
-![Screenshot](screenshot.png)
+![Screenshot](./screenshot.png)
 
 ## Features
 *   **Syntax Highlighting** (C/C++)
