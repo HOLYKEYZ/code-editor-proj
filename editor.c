@@ -607,6 +607,23 @@ void editorMoveCursor(int key) {
         case ARROW_DOWN:
             if (E.cy < E.numrows) E.cy++;
             break;
+        case HOME_KEY:
+            E.cx = 0;
+            break;
+        case END_KEY:
+            if (E.cy < E.numrows) E.cx = E.row[E.cy].size;
+            break;
+        case PAGE_UP:
+            E.cy = E.rowoff;
+            E.cy -= E.screenrows;
+            if (E.cy < 0) E.cy = 0;
+            if (row) E.cx = min(E.cx, row->size);
+            break;
+        case PAGE_DOWN:
+            E.cy = E.rowoff + E.screenrows;
+            if (E.cy > E.numrows) E.cy = E.numrows;
+            if (row) E.cx = min(E.cx, row->size);
+            break;
     }
 }
 
