@@ -64,8 +64,6 @@ struct editorConfig {
 
 struct editorConfig E;
 
-struct editorConfig E;
-
 struct abuf {
     char *b;
     int len;
