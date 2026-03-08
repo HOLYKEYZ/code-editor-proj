@@ -19,6 +19,7 @@
 // --- DEFINES ---
 #define KILO_VERSION "0.0.1"
 #define CTRL_KEY(k) ((k) & 0x1f)
+#define min(a, b) ((a) < (b) ? (a) : (b))
 
 enum editorKey {
     BACKSPACE = 127,
