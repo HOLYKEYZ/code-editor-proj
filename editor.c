@@ -127,7 +127,9 @@ int getWindowSize(int *rows, int *cols) {
 // --- SYNTAX HIGHLIGHTING ---
 
 void editorUpdateSyntax(erow *row) {
-    row->hl = realloc(row->hl, row->size);
+    unsigned char *temp_hl = realloc(row->hl, row->size);
+    if (temp_hl == NULL) die("realloc");
+    row->hl = temp_hl;
     memset(row->hl, HL_NORMAL, row->size);
     
     int i = 0;
@@ -188,6 +190,7 @@ int editorSyntaxToColor(int hl) {
 char *editorPrompt(char *prompt) {
     size_t bufsize = 128;
     char *buf = malloc(bufsize);
+    if (buf == NULL) die("malloc");
     size_t buflen = 0;
     buf[0] = '\0';
 
@@ -210,7 +213,9 @@ char *editorPrompt(char *prompt) {
         } else if (!iscntrl(c) && c < 128) {
             if (buflen == bufsize - 1) {
                 bufsize *= 2;
-                buf = realloc(buf, bufsize);
+                char *temp_buf = realloc(buf, bufsize);
+                if (temp_buf == NULL) die("realloc");
+                buf = temp_buf;
             }
             buf[buflen++] = c;
             buf[buflen] = '\0';
@@ -240,7 +245,9 @@ void editorFind() {
 
 void editorRowInsertChar(erow *row, int at, int c) {
     if (at < 0 || at > row->size) at = row->size;
-    row->chars = realloc(row->chars, row->size + 2);
+    char *temp_chars = realloc(row->chars, row->size + 2);
+    if (temp_chars == NULL) die("realloc");
+    row->chars = temp_chars;
     memmove(&row->chars[at + 1], &row->chars[at], row->size - at + 1);
     row->size++;
     row->chars[at] = c;
@@ -257,11 +264,14 @@ void editorRowDelChar(erow *row, int at) {
 void editorInsertRow(int at, char *s, size_t len) {
     if (at < 0 || at > E.numrows) return;
 
-    E.row = realloc(E.row, sizeof(erow) * (E.numrows + 1));
+    erow *temp_row = realloc(E.row, sizeof(erow) * (E.numrows + 1));
+    if (temp_row == NULL) die("realloc");
+    E.row = temp_row;
     memmove(&E.row[at + 1], &E.row[at], sizeof(erow) * (E.numrows - at));
 
     E.row[at].size = len;
     E.row[at].chars = malloc(len + 1);
+    if (E.row[at].chars == NULL) die("malloc");
     memcpy(E.row[at].chars, s, len);
     E.row[at].chars[len] = '\0';
     
