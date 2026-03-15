@@ -65,10 +65,6 @@ struct editorConfig {
 
 struct editorConfig E;
 
-struct abuf {
-    char *b;
-    int len;
-};
 
 // --- PROTOTYPES ---
 void editorSetStatusMessage(const char *fmt, ...);
